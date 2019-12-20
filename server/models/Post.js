@@ -10,18 +10,22 @@ const PostSchema = new Schema({
         type: String,
         required: true
     },
-    password: {
+    likes:{
         type: String,
-        required: true
+        default: 0
     },
-    otp: {
+    posttext: {
         type: String,
-        required: true
+        required : true 
     },
-    isVerified: {
-        type : Boolean,
-        required: true
-    }
+    postImage: {
+        type:String,
+        default : ""
+    },
+    likers : [{
+        type:string
+    }]
+
 });
 
 module.exports = Post = mongoose.model("posts",PostSchema);

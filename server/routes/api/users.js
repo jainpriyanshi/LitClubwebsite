@@ -162,7 +162,9 @@ const ValidateLoginInput = function validateLoginInput(data) {
         if (isMatch) {
           const payload = {
             id: user.id,
-            name: user.name
+            name: user.name,
+            email: user.email
+            
           };
           jwt.sign(
             payload,
@@ -176,7 +178,9 @@ const ValidateLoginInput = function validateLoginInput(data) {
                 token: "Bearer " + token
               });
             }
+           
           );
+          console.log(user.email);
           console.log("login ");
         } else {
           return res.status(400).json({ passwordincorrect: "Password incorrect" });
