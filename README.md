@@ -5,7 +5,7 @@
   ## Deploy on local machine
 * ### Install [Node.js](https://nodejs.org/en/download/current/)
 > Deploying this app requires node package manager `npm`
-* ### Set [MOngodb](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/) Database
+* ### Set [MongoDB](https://docs.mongodb.com/manual/installation/) Database
 * ### Clone the repository
 > Download this repository `or`
 ```
