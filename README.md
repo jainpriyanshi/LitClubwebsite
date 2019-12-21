@@ -1,10 +1,11 @@
 # Lit Club Website 
- ### A webApp to built on MERN stck to help manage all work and contests of Literature Club 
+ ### A webApp built on MERN stck to help manage all work and contests of Literature Club 
   
 
   ## Deploy on local machine
 * ### Install [Node.js](https://nodejs.org/en/download/current/)
 > Deploying this app requires node package manager `npm`
+* ### Set [MOngodb](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/) Database
 * ### Clone the repository
 > Download this repository `or`
 ```
