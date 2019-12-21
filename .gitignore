@@ -1,6 +1,4 @@
 /server/node_modules
 /server/package-lock.json
-/server/config/keys.js
-/server/config/mail.js
 /client/node_modules
 /client/package-lock.json
