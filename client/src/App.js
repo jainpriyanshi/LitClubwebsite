@@ -8,14 +8,14 @@ import { Provider } from "react-redux";
 import store from "./store";
 
 import Navbar from "./components/layout/Navbar";
-import Navbar2 from "./components/layout/Navbar2";
-import Landing from "./components/layout/Landing";
+import Landing from "./components/layout/carousel";
 import Register from "./components/auth/Register";
 import Verify from "./components/auth/Verify";
 import Login from "./components/auth/Login";
 import PrivateRoute from "./components/private-route/PrivateRoute";
 import PrivateNavbar from "./components/private-route/PrivateNavbar";
 import Dashboard from "./components/dashboard/Dashboard";
+import ImageCreator from "./components/ImageCreator/imageCreator.jsx"
 
 if (localStorage.jwtToken) {
 
@@ -47,6 +47,9 @@ class App extends Component {
             <Route exact path="/verify" component={Verify} />   
             <Switch>
               <PrivateRoute exact path="/dashboard" component={Dashboard} />
+            </Switch>
+            <Switch>
+              <PrivateRoute exact path="/template" component={ImageCreator} />
             </Switch>
           </div>
         </Router>

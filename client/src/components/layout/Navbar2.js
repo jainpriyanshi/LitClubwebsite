@@ -3,27 +3,12 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
 import {Link} from "react-router-dom"; 
-import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    flexGrow: 1,
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-  title: {
-    flexGrow: 1,
-  },
-}));
-
-
-
-class Dashboard extends Component {
+class Navbar2 extends Component {
   onLogoutClick = e => {
     e.preventDefault();
     this.props.logoutUser();
@@ -34,14 +19,14 @@ class Dashboard extends Component {
 
     return (
       <div style={{display: "flex"}} >
-       <AppBar position="static" style={{backgroundColor:"black",width:"100%", align:"left"}}>
+       <AppBar position="static" style={{backgroundColor:"white",width:"100%", align:"left"}}>
         <Toolbar>
             <Typography variant="h6"  style={{textAlign:"left", fontFamily:'Roboto'}}>
             <Link to =  '/'>
-            <Button style={{color:"white"}}>  Literature Club </Button>
+            <Button style={{color:"black"}}>  Literature Club </Button>
             </Link>
           </Typography>
-          <Typography variant="h6"  style={{marginLeft: "auto", fontFamily:'Roboto'}}>
+          <Typography variant="h6"  style={{marginLeft: "auto", color : "black" , fontFamily:'Roboto'}}>
             <b>Hey</b> {user.name.split(" ")[0]}
           </Typography>
           <button
@@ -51,10 +36,11 @@ class Dashboard extends Component {
                 letterSpacing: "1.5px",
                 marginTop: "1rem",
                 marginBottom : "1rem",
-                marginRight: "1rem"
+                marginRight: "1rem",
+                marginLeft: "1rem"
               }}
               onClick={this.onLogoutClick}
-              className="btn btn-large waves-effect waves-light"
+              class="btn btn-outline-danger">
             >
               Logout
             </button>
@@ -65,7 +51,7 @@ class Dashboard extends Component {
   }
 }
 
-Dashboard.propTypes = {
+Navbar2.propTypes = {
   logoutUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired
 };
@@ -77,4 +63,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { logoutUser }
-)(Dashboard);
+)(Navbar2);
