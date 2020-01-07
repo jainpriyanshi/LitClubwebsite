@@ -6,7 +6,7 @@ const PostSchema = new Schema({
         type: String,
         required: true
     },
-    email: {
+    ldap: {
         type: String,
         required: true
     },
@@ -18,12 +18,20 @@ const PostSchema = new Schema({
         type: String,
         required : true 
     },
-    postImage: {
-        type:String,
+    postCaption: {
+        type: String,
         default : ""
     },
+    postBadge: {
+        type: String,
+        default : ""
+    },
+    Date : {
+        type: Date,
+        requires: true
+    },
     likers : [{
-        type:string
+        type:String
     }]
 
 });

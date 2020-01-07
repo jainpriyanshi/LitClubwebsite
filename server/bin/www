@@ -3,7 +3,40 @@ var debug = require('debug')('my-application');
 var app = require('../app');
 
 app.set('port', process.env.PORT || 4000);
+const Post = require ("../models/Post");
+const http = require('http').Server(app);
+const io = require('socket.io')(http);
+io.on('connection', function(socket){
+  console.log('a user connected');
+    socket.on('disconnect', function(){
+    console.log('User Disconnected');
+  });
+ 
+  socket.on('post_message', function(data){
+    //console.log(data);
+    const newPost = new Post({
+      author : data.name,
+      ldap : data.ldap,
+      likes: 0,
+      postCaption:data.caption,
+      posttext: data.text,
+      postBadge: data.badge,
+      Date : new Date,
+      likers: []
+     });
+     newPost.save();
+     //console.log(newPost);
+    io.sockets.emit("change_data");
+    console.log("data emitted");
+  });
 
-var server = app.listen(app.get('port'), function() {
-  debug('Express server listening on port ' + server.address().port);
+  socket.on('initial_data',()=> {
+    Post.find({}).sort({Date: -1}).then(docs => {
+      io.sockets.emit("get_data",docs);
+    })
+  });
+  socket.on('update_likes' , function(data){
+    console.log(data);
+  });
 });
+io.listen(4000);
