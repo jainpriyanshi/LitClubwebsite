@@ -4,16 +4,23 @@ import { connect } from "react-redux";
 import SetText from "./setText";
 import Displayimg from "./displayimg";
 
+import openSocket from 'socket.io-client';
+const socket = openSocket('http://localhost:4000');
+
 class imageCreator extends Component {
     state = {
         text: "Enter text",
-        textsize: 30,
-        user : this.props.auth,
+        name : this.props.auth.user.name,
+        ldap: this.props.auth.user.email.split("@")[0],
         badge: "badge",
         caption: "caption",
     }
     
-
+    onClick= () => {
+        this.setState({ name: this.props.auth.user.name });
+        this.setState({ email: this.props.auth.user.email });
+        socket.emit('post_message', this.state);
+    }
     onChangetext = (e) => {
         this.setState({ text: e.target.value });
         console.log(this.state);
@@ -30,7 +37,7 @@ class imageCreator extends Component {
         return " " + this.state.textsize;
     }
     render() {
-        this.state.user=this.props.auth;
+        this.state.name=this.props.auth.user.name;
         return (
             <div className = 'container py-5'>
                 <div className = "row">
@@ -41,7 +48,7 @@ class imageCreator extends Component {
                        
                     </div>
                      <div className = "col-lg-4" style={{ position : "relative"}}>
-                       < SetText changetext = {this.onChangetext} changesize={this.onChangesize} changebadge={this.onChangebadge} changecaption={ this.onChangecaption}/>
+                       < SetText  buttonclick = {this.onClick} changetext = {this.onChangetext} changesize={this.onChangesize} changebadge={this.onChangebadge} changecaption={ this.onChangecaption}/>
                     </div>
                 </div>
                

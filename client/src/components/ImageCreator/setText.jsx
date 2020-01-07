@@ -33,7 +33,8 @@ export default class setText extends Component {
                     marginBottom : "1rem",
                     marginRight: "1rem",  
                 }}
-                className=" text-center btn btn-large waves-effect waves-light"
+                onClick = {this.props.buttonclick}
+                className=" text-center btn btn-large waves-effect waves-light" 
                 >
                 Submit 
                 </button>

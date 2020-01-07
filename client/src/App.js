@@ -15,7 +15,8 @@ import Login from "./components/auth/Login";
 import PrivateRoute from "./components/private-route/PrivateRoute";
 import PrivateNavbar from "./components/private-route/PrivateNavbar";
 import Dashboard from "./components/dashboard/Dashboard";
-import ImageCreator from "./components/ImageCreator/imageCreator.jsx"
+import ImageCreator from "./components/ImageCreator/imageCreator"
+import PostDisplay from "./components/ImageCreator/postdisplay"
 
 if (localStorage.jwtToken) {
 
@@ -44,7 +45,10 @@ class App extends Component {
             <Route exact path="/" component={Landing} />
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />            
-            <Route exact path="/verify" component={Verify} />   
+            <Route exact path="/verify" component={Verify} /> 
+            <Switch>
+              <PrivateRoute exact path="/posts" component={PostDisplay} />
+            </Switch>  
             <Switch>
               <PrivateRoute exact path="/dashboard" component={Dashboard} />
             </Switch>

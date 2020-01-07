@@ -15,7 +15,7 @@ export default class displayimg extends Component {
                 <img src={process.env.PUBLIC_URL + '/avatar.png'} class="avatar text-center rounded float-left float-bottom" alt="..." />
                
                 <div class = "profiletext text-center"> 
-                <b><span > {this.props.display.user.user.name}
+                <b><span > {this.props.display.name}
                 </span> </b>
                 </div>
                  
@@ -28,8 +28,8 @@ export default class displayimg extends Component {
                 <div className = "imgtext">
                     
                     <div className="content text-center" >
-                        <pre style ={{fontSize : this.props.textformat , color: "white"}} > {this.props.display.text} </pre>
-                       
+                        <b><pre style ={{fontSize : this.props.textformat , color: "white"}} > {this.props.display.text} </pre>
+                        </b>
                     </div> 
 
                     <div >
@@ -40,7 +40,9 @@ export default class displayimg extends Component {
 
                 </div>
                 </div>
+                <button type="button" class="btn btn-light button ">
                 <img src={process.env.PUBLIC_URL + '/heart.png'} class="heart text-center rounded float-left float-bottom" alt="..." />
+                </button>
                 <div className="mt-1 ml-2">
                     {badgeItems}
                 </div>
