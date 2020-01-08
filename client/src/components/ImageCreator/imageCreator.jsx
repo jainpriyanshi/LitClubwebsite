@@ -20,6 +20,7 @@ class imageCreator extends Component {
         this.setState({ name: this.props.auth.user.name });
         this.setState({ email: this.props.auth.user.email });
         socket.emit('post_message', this.state);
+        this.props.history.push("/posts");
     }
     onChangetext = (e) => {
         this.setState({ text: e.target.value });

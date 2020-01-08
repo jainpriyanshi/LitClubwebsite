@@ -15,7 +15,7 @@ module.exports.mailverify = (to,otp)=>{
         from: email,
         to: to,
         subject: "verify account",
-         text: `Enter this otp to con validation of your account, \nE-mail : ${to}\nOTP : ${otp}` 
+         text: `Enter this otp to confirm validation of your account, \nE-mail : ${to}\nOTP : ${otp}` 
     };
     transporter.sendMail(mail,function(err,info){
         if(err){

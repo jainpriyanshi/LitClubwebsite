@@ -17,7 +17,7 @@ io.on('connection', function(socket){
   });
  
   socket.on('post_message', function(data){
-    //console.log(data);
+
     const newPost = new Post({
       author : data.name,
       ldap : data.ldap,
@@ -29,9 +29,7 @@ io.on('connection', function(socket){
       likers: []
      });
      newPost.save();
-     //console.log(newPost);
-    io.sockets.emit("change_data");
-    console.log("data emitted");
+     io.sockets.emit("change_data");
   });
 
   socket.on('initial_data',()=> {
@@ -39,9 +37,27 @@ io.on('connection', function(socket){
       io.sockets.emit("get_data",docs);
     })
   });
+
   socket.on('update_likes' , function(data){
-    console.log(data);
+    var liker = {"ldap" : data.user};
+    
+    Post.findOne({_id: data.id}).then(tmp => {
+      var like = tmp.likes;
+      Post.findOne({_id: data.id , likers: {$elemMatch: {ldap: liker.ldap}}}).then(post => {
+        if(!post)
+        {
+          Post.findOneAndUpdate({_id: data.id}, {$set: { likes: like+1} , $addToSet: {likers: liker} } ).then(user => {
+            if(user){
+              like = like+1;
+            }
+          });
+        }
+      });
+    })
+    
+    io.sockets.emit("change_data");
   });
 });
+
 io.attach(server);
 server.listen(4000);

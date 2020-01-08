@@ -27,8 +27,14 @@ class Navbar2 extends Component {
             </Link>
           </Typography>
           <Typography variant="h6"  style={{marginLeft: "auto", color : "black" , fontFamily:'Roboto'}}>
-            <b>Hey</b> {user.name.split(" ")[0]}
+            <b>Hey</b> {user.name.split(" ")[0]}  
           </Typography>
+          <Link to =  '/template'>
+            <Button style={{color:"black"}}>  AddPost </Button>
+            </Link>
+            <Link to =  '/posts'>
+            <Button style={{color:"black"}}>  Posts </Button>
+            </Link>
           <button
               style={{
                 width: "150px",

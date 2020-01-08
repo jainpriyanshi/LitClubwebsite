@@ -11,7 +11,7 @@ const PostSchema = new Schema({
         required: true
     },
     likes:{
-        type: String,
+        type: Number,
         default: 0
     },
     posttext: {
@@ -30,8 +30,11 @@ const PostSchema = new Schema({
         type: Date,
         requires: true
     },
-    likers : [{
-        type:String
+    likers : [
+       {
+           ldap : {
+               type: String,
+           }
     }]
 
 });

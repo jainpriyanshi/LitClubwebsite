@@ -3,7 +3,7 @@ import "./display.css";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import openSocket from 'socket.io-client';
-const socket = openSocket('http://localhost:4000');
+const socket = openSocket('localhost:4000');
 
 class postdisplay extends Component {
     state = {
@@ -37,7 +37,6 @@ class postdisplay extends Component {
            socket.off("change_data");
          }
          fetch_Post() {
-            
             var badgelist="";
             var badgeItems=[];
              return this.state.post_array.map(Post =>{
@@ -94,7 +93,7 @@ class postdisplay extends Component {
                    <b> <p> {Post.postCaption }</p> </b>
                 </div>
                 </div>
-          </div>
+            </div>
                
               )});
            }
