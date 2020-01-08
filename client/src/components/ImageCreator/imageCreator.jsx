@@ -5,7 +5,7 @@ import SetText from "./setText";
 import Displayimg from "./displayimg";
 
 import openSocket from 'socket.io-client';
-const socket = openSocket('http://localhost:4000');
+const socket = openSocket('localhost:4000');
 
 class imageCreator extends Component {
     state = {

@@ -11,7 +11,7 @@ class postdisplay extends Component {
     };
         getData = (e) => {
         this.setState({post_array: e });
-        console.log(this.state.post_array);
+
        }
         changeData = () =>{
          console.log("changeddata");
@@ -21,16 +21,15 @@ class postdisplay extends Component {
         updateLikes = (e,id) =>
         {   
             e.preventDefault();
-            console.log("post liked");
+            
             const data= { id: id , user: this.props.auth.user.email.split("@")[0]};
-            console.log(data);
+            
             socket.emit("update_likes" , data);
         } 
         componentDidMount() {
             socket.emit("initial_data");
            socket.on("get_data", this.getData);
            socket.on("change_data", this.changeData);
-           console.log("hii")
           }
           componentWillUnmount() {
            socket.off("get_data");

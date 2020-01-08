@@ -17,6 +17,7 @@ import PrivateNavbar from "./components/private-route/PrivateNavbar";
 import Dashboard from "./components/dashboard/Dashboard";
 import ImageCreator from "./components/ImageCreator/imageCreator"
 import PostDisplay from "./components/ImageCreator/postdisplay"
+import PostDisplayById from "./components/ImageCreator/postDisplayById"
 
 if (localStorage.jwtToken) {
 
@@ -49,6 +50,9 @@ class App extends Component {
             <Switch>
               <PrivateRoute exact path="/posts" component={PostDisplay} />
             </Switch>  
+            <Switch>
+              <PrivateRoute path="/posts/:id" component={PostDisplayById} />
+            </Switch>
             <Switch>
               <PrivateRoute exact path="/dashboard" component={Dashboard} />
             </Switch>
