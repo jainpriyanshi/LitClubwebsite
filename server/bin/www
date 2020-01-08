@@ -4,6 +4,7 @@ var app = require('../app');
 
 app.set('port', process.env.PORT || 4000);
 const Post = require ("../models/Post");
+const Blog = require ("../models/Blog");
 const http = require('http');
 var server = http.createServer(app);
 
@@ -56,6 +57,23 @@ io.on('connection', function(socket){
     })
     
     io.sockets.emit("change_data");
+  });
+
+  socket.on('post_blog', function(data){
+
+    const newBlog = new Blog({
+      author : data.name,
+      ldap : data.ldap,
+      likes: 0,
+      postTitle:data.title,
+      postText: data.text,
+      postBadge: data.badge,
+      postSummary: data.summary,
+      Date : new Date,
+      likers: []
+     });
+     newBlog.save();
+     //io.sockets.emit("change_blog_data");
   });
 });
 

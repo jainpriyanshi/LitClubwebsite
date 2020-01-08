@@ -26,6 +26,10 @@ const BlogSchema = new Schema({
         type: String,
         default : ""
     },
+    postSummary: {
+        type: String,
+        default:""
+    },
     Date : {
         type: Date,
         requires: true
