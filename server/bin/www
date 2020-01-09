@@ -12,9 +12,7 @@ var io = require('socket.io')(http);
 
 
 io.on('connection', function(socket){
-  console.log('a user connected');
     socket.on('disconnect', function(){
-    console.log('User Disconnected');
   });
  
   socket.on('post_message', function(data){
@@ -73,7 +71,31 @@ io.on('connection', function(socket){
       likers: []
      });
      newBlog.save();
-     //io.sockets.emit("change_blog_data");
+     io.sockets.emit("change_blog_data");
+  });
+  socket.on('initial_blog_data',()=> {
+    Blog.find({}).sort({Date: -1}).then(docs => {
+      io.sockets.emit("get_blog_data",docs);
+    })
+  });
+  socket.on('update_blog_likes' , function(data){
+    var liker = {"ldap" : data.user};
+    
+    Blog.findOne({_id: data.id}).then(tmp => {
+      var like = tmp.likes;
+      Blog.findOne({_id: data.id , likers: {$elemMatch: {ldap: liker.ldap}}}).then(blog => {
+        if(!blog)
+        {
+          Blog.findOneAndUpdate({_id: data.id}, {$set: { likes: like+1} , $addToSet: {likers: liker} } ).then(user => {
+            if(user){
+              like = like+1;
+              console.log(like);
+            }
+          });
+        }
+      });
+    })
+    io.sockets.emit("change_blog_data");
   });
 });
 

@@ -35,6 +35,12 @@ class Navbar2 extends Component {
             <Link to =  '/posts'>
             <Button style={{color:"black"}}>  Posts </Button>
             </Link>
+            <Link to =  '/blogs'>
+            <Button style={{color:"black"}}>  Blogs </Button>
+            </Link>
+            <Link to =  '/addblog'>
+            <Button style={{color:"black"}}>  AddBlog </Button>
+            </Link>
           <button
               style={{
                 width: "150px",

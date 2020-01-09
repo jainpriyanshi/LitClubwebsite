@@ -18,7 +18,10 @@ import Dashboard from "./components/dashboard/Dashboard";
 import ImageCreator from "./components/ImageCreator/imageCreator"
 import PostDisplay from "./components/ImageCreator/postdisplay"
 import PostDisplayById from "./components/ImageCreator/postDisplayById"
-import AddBlog from "./components/blog/Blog"
+import AddBlog from "./components/blog/Addblog"
+import bloglist from "./components/blog/Bloglist"
+import readblog from "./components/blog/Readblog"
+import BloglistById from "./components/blog/BlogListById"
 
 if (localStorage.jwtToken) {
 
@@ -55,10 +58,19 @@ class App extends Component {
               <PrivateRoute path="/posts/:id" component={PostDisplayById} />
             </Switch>
             <Switch>
+              <PrivateRoute path="/blogs/:id" component={BloglistById} />
+            </Switch>
+            <Switch>
               <PrivateRoute exact path="/dashboard" component={Dashboard} />
             </Switch>
             <Switch>
               <PrivateRoute exact path="/addblog" component={AddBlog} />
+            </Switch>
+            <Switch>
+              <PrivateRoute exact path="/blogs" component={bloglist} />
+            </Switch>
+            <Switch>
+              <PrivateRoute exact path="/readblog" component={readblog} />
             </Switch>
             <Switch>
               <PrivateRoute exact path="/template" component={ImageCreator} />
