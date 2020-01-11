@@ -1,4 +1,49 @@
 .img{
-    width: 1180px;
-    height: 200px;
+    width: 50%;
+    height: 560px;
+    float: right;
+}
+.p::first-letter {
+  font-size: 300%;
+  color: black;
+}
+.cardTitle{
+    background-image:"white";
+    width: 40%;
+    margin-left: 20%;
+    margin-bottom: 100px;
+}
+.root{
+    font-family:'Georgia','Cambria','Times New Roman','Times','serif' ;
+    font-size:15px;
+    letter-spacing: -0.004em;
+    line-height: 1.58;
+    color: rgba(0,0,0,0.84);
+    margin-bottom: -0.46em;
+    margin-top: 2em;
+    font-weight: 400;
+}
+.summary{
+    font-family: initial;
+    color: rgba(0,0,0, 0.8)
+}
+.title{
+    text-shadow: 0 0 1px; 
+    color: rgba(0,0,0,0.84);
+    line-height: 50px;
+    font-weight: 400;
+    font-size: 40px;
+    text-align: center;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+.sidesummary{
+    font-family:'Lucida Sans','Lucida Grande','Geneva','Arial','sans-serif','Unicode' ;
+    text-overflow: ellipsis;
+    color: rgba(0,0,0,0.54);
+    overflow: hidden;
+    font-size: 16px;
+    font-weight: 200;
+}
+.Background{
+    background-color: azure;
 }

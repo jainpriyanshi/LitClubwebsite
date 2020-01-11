@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
 import "./display.css";
+import {Link} from 'react-router-dom';
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import openSocket from 'socket.io-client';
+import { Typography } from '@material-ui/core';
 const socket = openSocket('localhost:4000');
 
 class postdisplay extends Component {
@@ -42,19 +45,19 @@ class postdisplay extends Component {
 
                 badgelist = Post.postBadge.split(",");
                 badgeItems = badgelist.map((badge) =>
-                  <p class="badge badge-success badge-pill mt-0 mb-0 mr-1 ml-1" style={{color:"black"}}> {badge}</p>
+                  <p class="badge badge-info badge-pill mt-0 mb-0 mr-1 ml-1" style={{color:"black"}}> {badge}</p>
                   );
               return (
-                <div key= {Post._id}className="col-lg-4 mx-auto">
-                    
-                <div className="card ">
-           
+                  
+                <div key= {Post._id}className="col-lg-12">
+                 <div style = {{ flexDirection:"column", paddingBottom: "30px", paddingTop:"0px"}} > 
+                <div className="card " >
                 <img src={process.env.PUBLIC_URL + '/avatar.png'} class="avatar text-center rounded float-left float-bottom" alt="..." />
-               
                 <div class = "profiletext text-center"> 
                 <b><span > {Post.author}
                 </span> </b>
                 </div>
+                
                  
                 <div className="card ">
                 <div className="imgbg text-center">
@@ -62,13 +65,14 @@ class postdisplay extends Component {
                     src={process.env.PUBLIC_URL + '/black.png'} 
                     alt="black background" />
                 </div>
+                
                 <div className = "imgtext">
                     
                     <div className="content text-center" >
                         <b><pre style ={{fontSize : this.props.textformat , color: "white"}} > {Post.posttext} </pre>
                         </b>
                     </div> 
-
+                
                     <div >
                     <img className ="imglogo"
                     src={process.env.PUBLIC_URL + '/iitjlogo.png'} 
@@ -78,28 +82,45 @@ class postdisplay extends Component {
 
                 </div>
                 </div>
-                <button type="button" class="btn btn-light button "
-                onClick={(event)=> {this.updateLikes(event, Post._id)}} >
-                <img src={process.env.PUBLIC_URL + '/heart.png'} class="heart rounded float-left float-bottom" alt="..." />
-                </button>
+               
+                <div class="ml-3">
+               <FavoriteBorderIcon onClick={(event)=> {this.updateLikes(event, Post._id)}}></FavoriteBorderIcon>
+                </div>
                 
-                
-                <span className = "liketext"> {Post.likes} likes </span>
-                <div className="mt-1 ml-2">
+                <b  class="ml-3 mt -1"> {Post.likes} likes </b>
+                <div className="mt-1" style={{fontFamily:"inherit",marginLeft:"8px"}}>
                     {badgeItems}
                 </div>
-                <div className = "mt-1 ml-2">
-                   <b> <p> {Post.postCaption }</p> </b>
+                <div className = "mt-1" style={{fontFamily:"inherit",marginLeft:"12px"}} >
+                   <p> {Post.postCaption }</p> 
+                </div>
                 </div>
                 </div>
             </div>
+            
                
               )});
            }
     render() {
         return (
-            <div>
+            <div class="background">
+            <div class ="row ">
+                <div className="col-lg-2"></div>
+            <div className=" col-lg-5">
                 {this.fetch_Post()}
+                
+            </div>
+            <div className="col-lg-3" > 
+            <div className ="card conatiner">
+            <Link to =  '/template'>
+            <Typography variant="h6"  style={{textAlign:"left", color: "black" , fontFamily:'Roboto'}}>
+               Add Post 
+          </Typography>
+           
+          </Link>
+             </div>
+             </div>
+            </div>
             </div>
         )
     };

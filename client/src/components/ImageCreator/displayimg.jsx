@@ -1,16 +1,17 @@
 import React, { Component } from 'react'
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import "./display.css";
 export default class displayimg extends Component {
-   
     render() {
+
         const badgelist = this.props.display.badge.split(",");
         const badgeItems = badgelist.map((badge) =>
-            <p class="badge badge-success badge-pill mt-0 mb-0 mr-1 ml-1" style={{color:"black"}}> {badge}</p>
+            <p class="badge badge-info badge-pill mt-0 mb-0 mr-1 ml-1" style={{color:"black"}}> {badge}</p>
             );
         return (
             <div>
                 <h1 class=" text-center "> Preview</h1>
-            <div className="card ">
+                <div className="card ">
            
                 <img src={process.env.PUBLIC_URL + '/avatar.png'} class="avatar text-center rounded float-left float-bottom" alt="..." />
                
@@ -40,14 +41,14 @@ export default class displayimg extends Component {
 
                 </div>
                 </div>
-                <button type="button" class="btn btn-light button ">
-                <img src={process.env.PUBLIC_URL + '/heart.png'} class="heart text-center rounded float-left float-bottom" alt="..." />
-                </button>
-                <div className="mt-1 ml-2">
+                 <div class="ml-3">
+               <FavoriteBorderIcon/>
+                </div>
+                <div className="mt-1" style={{fontFamily:"inherit",marginLeft:"8px"}}>
                     {badgeItems}
                 </div>
-                <div className = "mt-1 ml-2">
-                   <b> <p> {this.props.display.caption }</p> </b>
+                <div className = "mt-1" style={{fontFamily:"inherit",marginLeft:"12px"}} >
+                    <p> {this.props.display.caption }</p> 
                 </div>
                 </div>
           </div>
