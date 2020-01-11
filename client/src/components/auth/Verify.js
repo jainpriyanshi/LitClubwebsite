@@ -5,6 +5,20 @@ import { connect } from "react-redux";
 import { verifyUser } from "../../actions/authActions";
 import classnames from "classnames";
 
+import Paper from '@material-ui/core/Paper';
+import Box from '@material-ui/core/Box';
+
+
+var sectionStyle = {
+  position : 'absolute',
+  width: "100%",
+  height: "100%",
+ background: `url(${process.env.PUBLIC_URL}/auth_bg.jpg)` ,
+ backgroundPosition: 'center',
+ backgroundSize: 'cover',
+ backgroundRepeat: 'no-repeat'
+};
+
 class Verify extends Component {
   constructor() {
     super();
@@ -48,24 +62,28 @@ class Verify extends Component {
     const { errors } = this.state;
 
     return (
-      <div className="container">
-        <div className="row">
-          <div className="col s8 offset-s2">
 
-            <div className="col s12" style={{ paddingLeft: "11.250px" }}>
-              <h4>
-                <b>Verify </b> 
-              </h4>
-              <p className="grey-text text-darken-1">
-                Already Verfied? <Link to="/login">Log in</Link>
-              </p>
-              <p className="grey-text text-darken-1">
-                Don't have an account? <Link to="/register">Register</Link>
-              </p>
-            </div>
-            <form noValidate onSubmit={this.onSubmit}>
-              
-              <div className="input-field col s12">
+      <div style= {sectionStyle}>
+        <br></br>
+        <br></br>
+            <div class="container my-auto">
+                <div class="row">
+                <div class="col-md-6 col-sm-12">
+                   
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                      
+                    <Box width ="100%" height="100%"  item xs={12} sm={8} md={5} component={Paper} elevation={6} className="card" >
+                    
+                    
+                      <div class="conainer">
+                    <div >
+                    <h4 style={{ margin: "50px 50px "  }}>
+                    <b>Verify</b>
+                    </h4>
+                    </div>
+                      <form noValidate onSubmit={this.onSubmit} style={{ margin: "30px 30px "  }}>
+                      <div className="input-field col s12">
                 <input
                   onChange={this.onChange}
                   value={this.state.email}
@@ -78,15 +96,15 @@ class Verify extends Component {
                 />
                 <label htmlFor="email">Email</label>
                 <span className="red-text">{errors.email}</span>
-              </div>
-              
-              <div className="input-field col s12">
+                        </div>
+                        <div className="input-field col s12">
+                        
                 <input
                   onChange={this.onChange}
                   value={this.state.otp}
                   error={errors.otp}
                   id="otp"
-                  type="otp"
+                  type="number"
                   className={classnames("", {
                     invalid: errors.otp
                   })}
@@ -94,25 +112,60 @@ class Verify extends Component {
                 <label htmlFor="otp">Enter OTP</label>
                 <span className="red-text">{errors.otp}</span>
               </div>
-              
-              <div className="col s12" style={{ paddingLeft: "11.250px" }}>
-                <button
-                  style={{
-                    width: "150px",
-                    borderRadius: "3px",
-                    letterSpacing: "1.5px",
-                    marginTop: "1rem"
-                  }}
-                  type="submit"
-                  className="btn btn-large waves-effect waves-light hoverable blue accent-3"
-                >
-                  Verify
-                </button>
-              </div>
-            </form>
+                      
+                      <br/>
+                      <div className="col s12" style={{ paddingLeft: "11.250px" }}>
+                        <button
+                          style={{
+                            width: "150px",
+                            borderRadius: "3px",
+                            letterSpacing: "1.5px",
+                            marginTop: "1rem"
+                            
+
+
+                          }}
+                          type="submit"
+                          className="btn btn-large waves-effect waves-light hoverable blue accent-3"
+                        >
+                          Verify
+                        </button>
+                        <p className="grey-text text-darken-1 mt-2 mb-2">
+                        Already Verfied? <Link to="/login">Log in</Link>
+                      </p>
+                      </div>
+                    </form>
+                    </div>
+                
+                    </Box>
+                    </div>
+                    
+                  </div>
+            </div>   
           </div>
-        </div>
-      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              
+             
     );
   }
 }

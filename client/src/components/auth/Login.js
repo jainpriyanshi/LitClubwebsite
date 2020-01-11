@@ -4,121 +4,151 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { loginUser } from "../../actions/authActions";
 import classnames from "classnames";
+import Paper from '@material-ui/core/Paper';
+import Box from '@material-ui/core/Box';
 
-class Login extends Component {
-  constructor() {
-    super();
-    this.state = {
-      email: "",
-      password: "",
-      errors: {}
-    };
-  }
-
-  componentDidMount() {
-    // If logged in and user navigates to Login page, should redirect them to dashboard
-    if (this.props.auth.isAuthenticated) {
-      this.props.history.push("/posts");
-    }
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.auth.isAuthenticated) {
-      this.props.history.push("/posts");
-    }
-
-    if (nextProps.errors) {
-      this.setState({
-        errors: nextProps.errors
-      });
-    }
-  }
-
-  onChange = e => {
-    this.setState({ [e.target.id]: e.target.value });
+var sectionStyle = {
+    position : 'absolute',
+    width: "100%",
+    height: "100%",
+   background: `url(${process.env.PUBLIC_URL}/auth_bg.jpg)` ,
+   backgroundPosition: 'center',
+   backgroundSize: 'cover',
+   backgroundRepeat: 'no-repeat'
   };
 
-  onSubmit = e => {
-    e.preventDefault();
+  class Login extends Component {
+    constructor() {
+      super();
+      this.state = {
+        email: "",
+        password: "",
+        errors: {}
+      };
+    }
 
-    const userData = {
-      email: this.state.email,
-      password: this.state.password
-    };
+    componentDidMount() {
+        // If logged in and user navigates to Login page, should redirect them to dashboard
+        if (this.props.auth.isAuthenticated) {
+          this.props.history.push("/posts");
+        }
+      }
+    
+      componentWillReceiveProps(nextProps) {
+        if (nextProps.auth.isAuthenticated) {
+          this.props.history.push("/posts");
+        }
+    
+        if (nextProps.errors) {
+          this.setState({
+            errors: nextProps.errors
+          });
+        }
+      }
+      onChange = e => {
+        this.setState({ [e.target.id]: e.target.value });
+      };
+      onSubmit = e => {
+        e.preventDefault();
+        const userData = {
+          email: this.state.email,
+          password: this.state.password
+        };
+        this.props.loginUser(userData);
+      };
 
-    this.props.loginUser(userData);
-  };
 
-  render() {
-    const { errors } = this.state;
+      render() {
+        const { errors } = this.state;
+        return (
+          
+          <div style= {sectionStyle}>
+            <br></br>
+        <br></br>
+            <div class="container">
+                <div class="row">
+                <div class="col-md-6 col-sm-12 my">
+                   
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                      
+                    <Box width ="100%" height="100%"  item xs={12} sm={8} md={5} component={Paper} elevation={6} className="card" >
+                    
+                    
+                      <div class="conainer">
+                    <div >
+                    <h4 style={{ margin: "50px 50px "  }}>
+                    <b>Sign In</b>
+                    </h4>
+                    </div>
+                      <form noValidate onSubmit={this.onSubmit} style={{ margin: "30px 30px "  }}>
+                        <div className="input-field col s12">
+                          <input
+                          onChange={this.onChange}
+                          value={this.state.email}
+                          error={errors.email}
+                          id="email"
+                          type="email"
+                          className={classnames("", {
+                            invalid: errors.email || errors.emailnotfound
+                          })}
+                        />
+                          <label htmlFor="email">Email</label>
+                          <span className="red-text">
+                            {errors.email}
+                            {errors.emailnotfound}
+                          </span>
+                        </div>
+                        <div className="input-field col s12">
+                        <input
+                          onChange={this.onChange}
+                          value={this.state.password}
+                          error={errors.password}
+                          id="password"
+                          type="password"
+                          className={classnames("", {
+                            invalid: errors.password || errors.passwordincorrect
+                          })}
+                        />
+                        <label htmlFor="password">Password</label>
+                        <span className="red-text">
+                          {errors.password}
+                          {errors.passwordincorrect}
+                        </span>
+                      </div>
+                      <br/>
+                      <div className="col s12" style={{ paddingLeft: "11.250px" }}>
+                        <button
+                          style={{
+                            width: "150px",
+                            borderRadius: "3px",
+                            letterSpacing: "1.5px",
+                            marginTop: "1rem"
+                            
 
-    return (
-      <div className="container">
-        <div style={{ marginTop: "4rem" }} className="row">
-          <div className="col s8 offset-s2">
-            <div className="col s12" style={{ paddingLeft: "11.250px" }}>
-              <h4>
-                <b>Sign In</b>
-              </h4>
-              <p className="grey-text text-darken-1">
-                Don't have an account? <Link to="/register">Register</Link>
-              </p>
-            </div>
-            <form noValidate onSubmit={this.onSubmit}>
-              <div className="input-field col s12">
-                <input
-                  onChange={this.onChange}
-                  value={this.state.email}
-                  error={errors.email}
-                  id="email"
-                  type="email"
-                  className={classnames("", {
-                    invalid: errors.email || errors.emailnotfound
-                  })}
-                />
-                <label htmlFor="email">Email</label>
-                <span className="red-text">
-                  {errors.email}
-                  {errors.emailnotfound}
-                </span>
-              </div>
-              <div className="input-field col s12">
-                <input
-                  onChange={this.onChange}
-                  value={this.state.password}
-                  error={errors.password}
-                  id="password"
-                  type="password"
-                  className={classnames("", {
-                    invalid: errors.password || errors.passwordincorrect
-                  })}
-                />
-                <label htmlFor="password">Password</label>
-                <span className="red-text">
-                  {errors.password}
-                  {errors.passwordincorrect}
-                </span>
-              </div>
-              <div className="col s12" style={{ paddingLeft: "11.250px" }}>
-                <button
-                  style={{
-                    width: "150px",
-                    borderRadius: "3px",
-                    letterSpacing: "1.5px",
-                    marginTop: "1rem"
-                  }}
-                  type="submit"
-                  className="btn btn-large waves-effect waves-light hoverable blue accent-3"
-                >
-                  Login
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    );
-  }
+
+                          }}
+                          type="submit"
+                          className="btn btn-large waves-effect waves-light hoverable blue accent-3"
+                        >
+                          Login
+                        </button>
+                        <p className="grey-text text-darken-1 mt-2 mb-2">
+                        Don't have an account? <Link to="/register">Register</Link>
+                      </p>
+                      </div>
+                    </form>
+                    </div>
+                
+                    </Box>
+                    </div>
+                    
+                  </div>
+            </div>   
+            </div> 
+            );
+    
+    }
 }
 
 Login.propTypes = {

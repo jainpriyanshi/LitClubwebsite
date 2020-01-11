@@ -38,31 +38,34 @@ class Bloglist extends Component {
                   <p class="badge badge-success badge-pill mt-0 mb-0 mr-1 ml-1" style={{color:"black"}}> {badge}</p>
                   );
               return (
-                <div key= {Blog._id}className="col-lg-6 mx-auto">
-                    
-                <div className="card ">
-           
-                <img src={process.env.PUBLIC_URL + '/avatar.png'} class="avatar text-center rounded float-left float-bottom" alt="..." />
-               
-                <div class = "profiletext text-center"> 
-                <b><span > {Blog.author}
-                </span> </b>
-                </div>
-                <br/>
-                <h3 class="center"> {Blog.postTitle}</h3>
-                <i class="center" style={{ color: "grey"}}> {Blog.postSummary} </i>
-                <div className="mt-1 ml-2">
-                    {badgeItems}
-                </div>
-                    <Link to={{
-                    pathname: '/readblog',
-                    state: {
-                        Blog: Blog
-                    }
-                    }}>read more</Link>
-                </div>
-            </div>
-               
+
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12 col-lg-12 mx-auto" key= {Blog._id}>
+                            <div class="jumbotron">
+                            <h1 class="display-4">{Blog.postTitle}</h1>
+                                <p class="lead">{Blog.postSummary}</p>
+                                <div className="mt-1 ml-2">
+                                {badgeItems}
+                                </div>
+                                <hr class="my-4"/>
+                                <b><span > {Blog.author}</span> </b>
+                                
+                                <p class="lead">
+                                <a class="btn btn-primary btn-lg" href="#" role="button">
+                                <Link to={{
+                                    pathname: '/readblog',
+                                    state: {
+                                            Blog: Blog
+                                            }
+                                }}>Read more</Link>
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+            </div>   
               )});
            }
     render() {
